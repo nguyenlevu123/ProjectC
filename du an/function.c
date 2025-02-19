@@ -228,24 +228,26 @@ void searchStudent() {
 
 // Ham sortStudents dung de sap xep danh sach sinh vien theo ten.
 void sortStudents() {
-	system("cls");
-	int order;
-	printf("Choose sorting order: 1. Ascending, 2. Descending: ");
-	scanf("%d", &order);
-	for (int i = 0; i < studentCount - 1; i++) {
-		for (int j = i + 1; j > studentCount; j++) {
-			int cmp = strcmp(students[i].name, students[j].name); // So sanh ten sinh vien.
-			if ((order == 1 && cmp > 0) || (order == 2 && cmp < 0)) {
-				// Hoan doi neu can thiet.
-				Student temp = students[i];
-				students[i] = students[j];
-				students[j] = temp;
-			}
-		}
-	}
+    system("cls");
+    int order;
+    printf("Choose sorting order: 1. Ascending, 2. Descending: ");
+    scanf("%d", &order);
 
-
+    for (int i = 0; i < studentCount - 1; i++) {
+        for (int j = i + 1; j < studentCount; j++) { // Sua loi o day
+            int cmp = strcmp(students[i].name, students[j].name); // So sanh ten sinh vien
+            if ((order == 1 && cmp > 0) || (order == 2 && cmp < 0)) {
+                // Hoan doi neu can thiet
+                Student temp = students[i];
+                students[i] = students[j];
+                students[j] = temp;
+            }
+        }
+    }
+    printf("Sorting completed.\n");
+    saveStudents(); // Luu y danh sach da sap xep
 }
+
 
 // Ham isValidStudent dung de kiem tra tinh hop le cua mot sinh vien.
 int isValidStudent(Student s) {
